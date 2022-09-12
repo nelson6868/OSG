@@ -2,44 +2,19 @@
 
 include 'config.php';
 session_start();
-$role="";
+$user_id = $_SESSION['user_id'];
 
-if(isset($_POST['submit'])){
+if(!isset($user_id)){
+   header('location:login.php');
+};
 
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
-
-   $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE email = '$email' AND password = '$pass'") or die('query failed');
-
-   if(mysqli_num_rows($select) > 0){
-      // $row = mysqli_fetch_assoc($select);
-      // $_SESSION['user_id'] = $row['id'];
-      // header('location:home.php');
-      while ($row = mysqli_fetch_assoc($select)) 
-      {
-        if($row["role"] == "Admin")
-        {
-          $_SESSION['user_id'] = $row['id'];
-          header('location:index.php');
-        }
-        else{
-          $_SESSION['user_id'] = $row['id'];
-          header('location:home.php');
-
-        }
-    
-      }
-   }
-   else{
-     
-      
-      $message[] = 'incorrect email or password!';
-    }
-
+if(isset($_GET['logout'])){
+   unset($user_id);
+   session_destroy();
+   header('location:login.php');
 }
 
 ?>
-
 
 
 
@@ -91,7 +66,7 @@ if(isset($_POST['submit'])){
   <link rel="stylesheet" href="plugins/colorbox/colorbox.css">
   <!-- Template styles-->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/reg.css">
+  <link rel="stylesheet" href="css/profile.css">
 
 </head>
 <body>
@@ -103,26 +78,28 @@ if(isset($_POST['submit'])){
 
 
      
-  <div class="form-container">
+     
+<div class="container_profile">
 
-<form action="" method="post" enctype="multipart/form-data">
-   <h3>login now</h3>
+<div class="profile">
    <?php
-      if(isset($message)){
-         foreach($message as $message){
-            echo '<div class="message">'.$message.'</div>';
-         }
+      $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
       }
-      ?>
-
-   <input type="email" name="email" placeholder="enter email" class="box" required>
-   <input type="password" name="password" placeholder="enter password" class="box" required>
-   <input type="submit" name="submit" value="login now" class="button">
-   <p>don't have an account? <a href="Register.php">regiser now</a></p>
-</form>
-
+      if($fetch['image'] == ''){
+         echo '<img src="images/default-avatar.png">';
+      }else{
+         echo '<img src="uploaded_img/'.$fetch['image'].'">';
+      }
+   ?>
+   <h3><?php echo $fetch['name']; ?></h3>
+   <a href="update_profile.php" class="btn">update profile</a>
+   <a href="home.php?logout=<?php echo $user_id; ?>" class="delete-btn">logout</a>
+   <p>new <a href="login.php">login</a> or <a href="register.php">register</a></p>
 </div>
 
+</div>
 <?php include 'footer.php';?>
     
 
