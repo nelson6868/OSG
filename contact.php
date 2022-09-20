@@ -1,3 +1,27 @@
+<?php 
+
+include 'config.php';
+
+// if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])
+if(isset($_POST['submit'])){
+$name = mysqli_real_escape_string($conn, $_POST['name']);
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $subject = mysqli_real_escape_string($conn, $_POST['subject']);
+  $message= mysqli_real_escape_string($conn, $_POST['message']);
+   
+  $insert = mysqli_query($conn, "INSERT INTO `contact_form`(name, email,subject,message) VALUES('$name', '$email','$subject','$message')") or die('query failed');
+ 
+
+   if($insert){
+
+  die("Registered successfully! Login");
+    // header('location:login.php');
+ }else{
+    die('registeration failed!');
+ }
+
+}
+?>
 
 
 
@@ -81,6 +105,7 @@
   <link rel="stylesheet" href="plugins/colorbox/colorbox.css">
   <!-- Template styles-->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reg.css">
 
 </head>
 <body>
@@ -129,7 +154,7 @@
           </span>
           <div class="ts-service-box-content">
             <h4>Visit Our Office</h4>
-            <p>9051 Constra Incorporate, USA</p>
+            <p>Enugu state</p>
           </div>
         </div>
       </div><!-- Col 1 end -->
@@ -141,7 +166,7 @@
           </span>
           <div class="ts-service-box-content">
             <h4>Email Us</h4>
-            <p>office@Constra.com</p>
+            <p>officeofsurveyordepart@surveyor.com</p>
           </div>
         </div>
       </div><!-- Col 2 end -->
@@ -153,7 +178,7 @@
           </span>
           <div class="ts-service-box-content">
             <h4>Call Us</h4>
-            <p>(+9) 847-291-4353</p>
+            <p>+234-9034-949999</p>
           </div>
         </div>
       </div><!-- Col 3 end -->
@@ -162,23 +187,33 @@
 
     <div class="gap-60"></div>
 
-    <div class="google-map">
+    <!-- <div class="google-map">
       <div id="map" class="map" data-latitude="40.712776" data-longitude="-74.005974" data-marker="images/marker.png" data-marker-name="Constra"></div>
-    </div>
+    </div> -->
 
     <div class="gap-40"></div>
 
     <div class="row">
       <div class="col-md-12">
-        <h3 class="column-title">We love to hear</h3>
+        <h3 class="column-title">We love to hear Your Opinion</h3>
         <!-- contact form works with formspree.io  -->
         <!-- contact form activation doc: https://docs.themefisher.com/constra/contact-form/ -->
-        <form id="contact-form" action="#" method="post" role="form">
+        <form id="contact-form" action="" method="post" role="form">
           <div class="error-container"></div>
+
+          <h2 class="text-center py-2"> Contact Us </h2>
+          <?php
+             if(isset($message)){
+              foreach($message as $message){
+                 echo '<div class="message">'.$message.'</div>';
+             }
+           }
+         ?>
+                       
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Name</label>
+                <label>Full Name</label>
                 <input class="form-control form-control-name" name="name" id="name" placeholder="" type="text" required>
               </div>
             </div>
@@ -202,7 +237,7 @@
               required></textarea>
           </div>
           <div class="text-right"><br>
-            <button class="btn btn-primary solid blank" type="submit">Send Message</button>
+            <button class="btn btn-primary solid blank" name="submit" type="submit">Send Message</button>
           </div>
         </form>
       </div>

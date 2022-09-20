@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
         if($row["role"] == "Admin")
         {
           $_SESSION['user_id'] = $row['id'];
-          header('location:index.php');
+          header('location:Admin/index.php');
         }
         else{
           $_SESSION['user_id'] = $row['id'];
@@ -104,6 +104,7 @@ if(isset($_POST['submit'])){
 
      
   <div class="form-container">
+  
 
 <form action="" method="post" enctype="multipart/form-data">
    <h3>login now</h3>
@@ -118,7 +119,7 @@ if(isset($_POST['submit'])){
    <input type="email" name="email" placeholder="enter email" class="box" required>
    <input type="password" name="password" placeholder="enter password" class="box" required>
    <input type="submit" name="submit" value="login now" class="button">
-   <p>don't have an account? <a href="Register.php">regiser now</a></p>
+   <!-- <p>don't have an account? <a href="Register.php">regiser now</a></p> -->
 </form>
 
 </div>

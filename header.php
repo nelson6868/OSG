@@ -1,3 +1,66 @@
+<?php
+
+include 'config.php';
+session_start();
+$role="";
+
+if(isset($_POST['submit'])){
+
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+
+   $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+
+   if(mysqli_num_rows($select) > 0){
+      // $row = mysqli_fetch_assoc($select);
+      // $_SESSION['user_id'] = $row['id'];
+      // header('location:home.php');
+      while ($row = mysqli_fetch_assoc($select)) 
+      {
+        if($row["role"] == "Admin")
+        {
+          $_SESSION['user_id'] = $row['id'];
+          header('location:update_profile.php');
+
+        } if($row["role"] == "user")
+        {
+          $_SESSION['user_id'] = $row['id'];
+          header('location:home.php');
+        }
+        if($row["role"] == "new")
+        {
+          $_SESSION['user_id'] = $row['id'];
+          header('location:update_profile.php');
+        }
+        else{
+          $_SESSION['user_id'] = $row['id'];
+          header('location:home.php');
+
+        }
+    
+      }
+   }
+   else{
+     
+      
+      $message[] = 'incorrect email or password!';
+    }
+
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +163,7 @@
                     <div class="info-box">
                       <div class="info-box-content">
                           <p class="info-box-title">Email Us</p>
-                          <p class="info-box-subtitle"><a href="mailto:office@Constra.com">officeSurveyorgeneral@ogs.com</a></p>
+                          <p class="info-box-subtitle"><a href="mailto:office@Constra.com">officesurveyorgeneral@ogs.com</a></p>
                       </div>
                     </div>
                   </li>
@@ -135,7 +198,9 @@
                 <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav mr-auto">
                       <li class="nav-item dropdown active">
-                          <a href="index.php" class="nav-link " >Home</a>
+                          <a href="index.php" class="nav-link " >
+                            
+                          </a>
                           <!-- <ul class="dropdown-menu" role="menu">
                             <li class="active"><a href="index-2.html">Home One</a></li>
                             <li><a href="index-3.html">Home Two</a></li>
@@ -154,8 +219,54 @@
                       </li>
                       <li class="nav-item"><a class="nav-link" href="events.php">Events  </a></li>
                      
-      
-                     <li class="nav-item"><a class="nav-link" href="Login.php">Login </a></li>
+                     <!-- <model start> -->
+                     <li class="nav-item"><a class="nav-link" href="#">
+           <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
+       
+           <form   action="" method="post" enctype="multipart/form-data">
+           <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+        <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '<div class="message">'.$message.'</div>';
+         }
+      }
+      ?>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" name="email" id="defaultForm-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" name="password" id="defaultForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary" name="submit">Login login login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+</div>
+
+                     </a></li>
+    </form>
+                     <!-- <model ends here> -->
                       <li class="nav-item dropdown">
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Projects <i class="fa fa-angle-down"></i></a>
                           <ul class="dropdown-menu" role="menu">

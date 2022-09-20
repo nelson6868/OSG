@@ -30,8 +30,8 @@ if(isset($_POST['submit'])){
          $insert = mysqli_query($conn, "INSERT INTO `user_form`(name, email,address,department,position, password, image) VALUES('$name', '$email','$address','$department','$position', '$pass', '$image')") or die('query failed');
          if($insert){
             move_uploaded_file($image_tmp_name, $image_folder);
-            $message[] = 'registered successfully!';
-            header('location:login.php');
+            $message[] = 'Registered successfully! Login';
+            // header('location:login.php');
          }else{
             $message[] = 'registeration failed!';
          }
