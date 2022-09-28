@@ -1,5 +1,6 @@
-<?php
 
+
+<?php
 include 'config.php';
 session_start();
 $role="";
@@ -20,21 +21,19 @@ if(isset($_POST['submit'])){
         if($row["role"] == "Admin")
         {
           $_SESSION['user_id'] = $row['id'];
-          header('location:update_profile.php');
+          header('location:Admin/index.php');
 
-        } if($row["role"] == "user")
+        } 
+        if($row["role"] == "user")
         {
           $_SESSION['user_id'] = $row['id'];
           header('location:home.php');
-        }
+
+        } 
         if($row["role"] == "new")
         {
           $_SESSION['user_id'] = $row['id'];
           header('location:update_profile.php');
-        }
-        else{
-          $_SESSION['user_id'] = $row['id'];
-          header('location:home.php');
 
         }
     
@@ -49,6 +48,9 @@ if(isset($_POST['submit'])){
 }
 
 ?>
+
+
+
 
 
 
@@ -97,6 +99,7 @@ if(isset($_POST['submit'])){
   <link rel="stylesheet" href="plugins/colorbox/colorbox.css">
   <!-- Template styles-->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reg.css">
 
 </head>
 <body>
@@ -145,7 +148,7 @@ if(isset($_POST['submit'])){
           <div class="row align-items-center">
             <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
                 <a class="d-block" href="index-2.html">
-                  <img loading="lazy" src="images/osglogo.jpg" alt="Constra">
+                  <img loading="lazy" src="images/osglogo1.jpg" alt="Constra">
                 </a>
             </div><!-- logo end -->
     
@@ -163,7 +166,7 @@ if(isset($_POST['submit'])){
                     <div class="info-box">
                       <div class="info-box-content">
                           <p class="info-box-title">Email Us</p>
-                          <p class="info-box-subtitle"><a href="mailto:office@Constra.com">officesurveyorgeneral@ogs.com</a></p>
+                          <p class="info-box-subtitle"><a href="mailto:office@Constra.com">surveyorgeneral799@gmail.com</a></p>
                       </div>
                     </div>
                   </li>
@@ -176,7 +179,55 @@ if(isset($_POST['submit'])){
                     </div>
                   </li>
                   <li class="header-get-a-quote">
-                    <a class="btn btn-primary" href="contact.html">Get A Quote</a>
+                             <!-- <model start> -->
+                             <li class="nav-item"><a class="nav-link" href="#">
+           <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
+       
+           <form   action="" method="post" enctype="multipart/form-data">
+           <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+    
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '<div class="message">'.$message.'</div>';
+         }
+      }
+      ?>
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" name="email" id="defaultForm-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" name="password" id="defaultForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary" name="submit"> login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center" >
+  <a href="" class="btn btn-primary btn-rounded mt-9000px" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+</div>
+
+                     </a></li>
+    </form>
+
                   </li>
                 </ul><!-- Ul end -->
             </div><!-- header right end -->
@@ -196,6 +247,7 @@ if(isset($_POST['submit'])){
                 </button>
                 
                 <div id="navbar-collapse" class="collapse navbar-collapse">
+                  
                     <ul class="nav navbar-nav mr-auto">
                       <li class="nav-item dropdown active">
                           <a href="index.php" class="nav-link " >
@@ -206,66 +258,17 @@ if(isset($_POST['submit'])){
                             <li><a href="index-3.html">Home Two</a></li>
                           </ul> -->
                       </li>
-    
+                      <li class="nav-item"><a class="nav-link" href="index.php">Home  </a></li>
                       <li class="nav-item dropdown">
                       <a href="about.php" class="nav-link " >About Us</a>
                           <ul class="dropdown-menu" role="menu">
-                            <!-- <li><a href="about.php">About Us</a></li> -->
-                            <!-- <li><a href="team.html">Our People</a></li>
-                            <li><a href="testimonials.html">Testimonials</a></li>
-                            <li><a href="faq.html">Faq</a></li>
-                            <li><a href="pricing.html">Pricing</a></li> -->
+                         
                           </ul>
                       </li>
+                  
                       <li class="nav-item"><a class="nav-link" href="events.php">Events  </a></li>
-                     
                      <!-- <model start> -->
-                     <li class="nav-item"><a class="nav-link" href="#">
-           <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
-       
-           <form   action="" method="post" enctype="multipart/form-data">
-           <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-        <?php
-      if(isset($message)){
-         foreach($message as $message){
-            echo '<div class="message">'.$message.'</div>';
-         }
-      }
-      ?>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" name="email" id="defaultForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-        </div>
-
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" name="password" id="defaultForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-primary" name="submit">Login login login</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="text-center">
-  <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Login</a>
-</div>
-
-                     </a></li>
-    </form>
+                    
                      <!-- <model ends here> -->
                       <li class="nav-item dropdown">
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Projects <i class="fa fa-angle-down"></i></a>
@@ -278,16 +281,40 @@ if(isset($_POST['submit'])){
                      
 
                       <li class="nav-item dropdown">
-                          <a href="#" class="nav-link">Department <i class="fa fa-angle-down"></i></a>
+                          <a href="#" class="nav-link">DEPARTMENTS/UNITS<i class="fa fa-angle-down"></i></a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="services.php">Office of the surveyor Dpt</a></li>
-                            <li><a href="services.php">GIS</a></li>
-                            <li><a href="services.php">Admin</a></li>
-                            <li><a href="services.php">Catar</a></li>
-                            <li><a href="services.php">PRS</a></li>
+                          <li><a href="#">HOD MAPPING & GEO-INFORMATION </a></li>
+                          <li><a href="#">HOD BOUNDARIES FIELD, GEODETIC & SPECIAL SUVEYS</a></li>
+                          <li><a href="#">HOD ADMINISTRATION</a></li>
+                          <li><a href="#">HOD FINANCE & ACCOUNTS</a></li>
+                          <li><a href="#">HOD PLANNING, RESEARCH & STATISTICS</a></li>
                          
                           </ul>
                       </li>
+                      <li class="nav-item dropdown">
+                          <a href="#" class="nav-link">THE SPECIAL UNITS<i class="fa fa-angle-down"></i></a>
+                          <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Legal Unit </a></li>
+                          <li><a href="#">G.I.S Unit</a></li>
+                          <li><a href="#">PRO UNIT</a></li>
+                          <li><a href="#">OC MAPPING/CARTO UNIT</a></li>
+                          <li><a href="#">OC GEO-INFORMATION UNIT</a></li>
+                          <li><a href="#">OC SURVEY RECORDS UNIT</a></li>
+                          <li><a href="#">OC INTER-STATE BOUNDARIES UNIT</a></li>
+                            <li><a href="#">OC INTERNAL BOUNDARIES UNIT</a></li>
+                            <li><a href="#">OC PLANNING, RESEARCH, MONITORING & COMPUTING UNIT</a></li>
+                            <li><a href="#">OC FIELD, GEODETIC & SPECIAL SUVEYS UNIT</a></li>
+                            <li><a href="#">OC CADASTRAL & LEGAL SURVEYS UNIT</a></li>
+                            <li><a href="#">OC GEODETIC CONTROL & TOPOGRAPHIC UNIT</a></li>
+                            <li><a href="#">OC SPECIAL & ENGINEERING SURVEY UNIT</a></li>
+                            <li><a href="#">OC PRINTING UNIT</a></li>
+                            <li><a href="#">OC LEGAL UNIT</a></li>
+                            <li><a href="#">OC FIELD UNIT</a></li>
+                            <li><a href="#">OC CARTO UNIT</a></li>
+                         
+                          </ul>
+                      </li>
+              
               
                    
               

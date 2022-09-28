@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
   <div class="body-inner">
-  <?php include 'header.php';?>
+  <?php include '../header.php';?>
 
 
   
@@ -119,7 +119,7 @@ if(isset($_POST['submit'])){
 
 
 
-<?php include 'footer.php';?>
+<?php include '../footer.php';?>
     
 
 

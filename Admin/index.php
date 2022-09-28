@@ -1,23 +1,5 @@
                                                 
-                                                           <?php
-                                                            include 'config.php';
-
-                                                    // read all row from database table
-                                                    $sql = "SELECT * FROM user_form";
-                                                    $result = $connection->query($sql);
-                                                    if(!$result){
-                                                        die("Invalid query:". $connection->error);
-                                                        echo "";
-                                                    }
-
-
-                                                    //read data of each row
-                                                    // while($row = $result->fetch_assoc()){
-
-                                                    // }
-
-                                                    ?>
-
+                                                    
                                                                 <?php
 
                                                                 include '../config.php';
@@ -54,6 +36,29 @@
                                                                 }
 
                                                                 ?>
+
+
+
+                                                                   <?php
+                                                           
+
+                                                           // read all row from database table
+                                                           $sql = "SELECT * FROM user_form";
+                                                           $result = $conn->query($sql);
+                                                           if(!$result){
+                                                               die("Invalid query:". $conn->error);
+                                                               echo "";
+                                                           }
+       
+       
+                                                           //read data of each row
+                                                           // while($row = $result->fetch_assoc()){
+       
+                                                           // }
+       
+                                                           ?>
+       
+
 
 
                                                     <!DOCTYPE html>
@@ -227,6 +232,7 @@
                                                                                     </li>
                                                                                     <li>
                                                                                     <a href="../index.php?logout=<?php echo $user_id; ?>" class="delete-btn">logout</a>
+                                                                               
                                                                                     </li>
                                                                                 </ul>
                                                                             </li>
@@ -270,7 +276,8 @@
                                                                                 <div class="header-button">
                                                                                     <div class="noti-wrap">
                                                                                         <div class="noti__item js-item-menu">
-                                                                                            <h4 class="small">Create User</h4>
+                                                                                             
+                                                                                        <button type="button" class="btn btn-success">Create User   </button>
                                                                                             <!-- <span class="quantity">1</span> -->
                                                                                             <div class="mess-dropdown js-dropdown">
 
@@ -289,19 +296,19 @@
                                                                                 <form action="" method="post">
                                                                                 <div class="form-group">
                                                                                         <label>Role</label>
-                                                                                        <input type="text" name="role" placeholder="Yor Role" class="box" required>
+                                                                                        <input type="text" name="role"  class="box" required>
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label>Email Address</label>
-                                                                                        <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                                                                        <input class="au-input au-input--full" type="email" name="email" >
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label>Password</label>
-                                                                                        <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                                                                        <input class="au-input au-input--full" type="password" name="password">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label>Confirm-Password</label>
-                                                                                        <input class="au-input au-input--full" type="password" name="cpassword" placeholder="confirm password">
+                                                                                        <input class="au-input au-input--full" type="password" name="cpassword" >
                                                                                     </div>
                                                                                 
                                                                                     <button class="au-btn au-btn--block au-btn--green m-b-20"  name="submit" type="submit">sign in</button>
@@ -331,7 +338,7 @@
                                                                                         </div>
                                                                                        
                                                                                                 <div class="email__footer">
-                                                                                                    <a href="#">See all emails</a>
+                                                                                                    <!-- <a href="#">See all emails</a> -->
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -406,27 +413,45 @@
                                                                                                 </tr>
                                                                                             </thead>
                                                                                             <tbody>
+
+
                                                                                             <?php
+                if($result->num_rows>0){
+                    while($row = $result->fetch_assoc()){
 
-                                                                                                    while($row = $result->fetch_assoc()){
-                                                                                                   echo "
-                                                                                                                                                               
-                                                                                    <td>$row[id]</td>
-                                                                                    <td>$row[name]</td>
-                                                                                    <td>$row[email]</td>
-                                                                                    <td>$row[address]</td>
-                                                                                    <td>$row[department]</td>
-                                                                                    <td>$row[position]</td>
-                                                                                  
-                                                                                    <td>
-                                                                                                <a class='btn btn-primary btn-sm' href='/OSG/edit.php?=$row[id]'>Edit</a>
-                                                                                                <a class='btn btn-danger btn-sm' href='/shope/delete.php?=$row[id]'>Delete</a>
-                                                                                            </td>
-                                                                                                                                        </tr>
-                                                                                                                                        ";
 
-                                                                                                                                }
-                                                                                                                                ?>
+
+                    
+                
+
+                ?>
+
+                <tr>
+                    <td><?php echo $row['id'];?> </td>
+                    <td><?php echo $row['name'];?> </td>
+                    <td><?php echo $row['email'];?> </td>
+                    <td><?php echo $row['address'];?> </td>
+                    <td><?php echo $row['department'];?> </td>
+                    <td><?php echo $row['position'];?> </td>
+                   
+                   
+                    <td><a class="btn btn-info"  href="edit.php?id=<?php echo $row['id'];?>">
+                    Edit
+                    </a>&nbsp;<a class="btn btn-danger" href="Delete.php?id=<?php echo $row['id']; ?>">
+                    Delete </a></td>
+                    </tr>
+                    <?php }
+                }
+                ?>
+
+
+
+
+
+
+
+
+                                                                                        
                                                                                                                                 </table>
                                                                                                                             </div>
                                                                                                                             <!-- END DATA TABLE-->

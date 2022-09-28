@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="plugins/colorbox/colorbox.css">
   <!-- Template styles-->
   <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="css/about.css">
 </head>
 <body>
   <div class="body-inner">
@@ -67,10 +67,63 @@
   <div class="container">
     <div class="row">
         <div class="col-lg-6">
-          <h3 class="column-title">Who We Are</h3>
-          <p>when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.</p>
-          <blockquote><p>Semporibus autem quibusdam et aut officiis debitis aut rerum est aut optio cumque nihil necessitatibus autemn ec tincidunt nunc posuere ut</p></blockquote>
-          <p>He lay on his armour-like  back, and if he lifted. ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing.</p>
+          <h3 class="column-title">FUNCTIONS OF THE OFFICE OF SURVEYOR GENERAL OF THE STATE</h3>
+          <p>The primary function of the Office of the State Surveyor General is to provide Survey Framework to facilitate the registration of Certificate of Occupancy under the Land Use Act.  The Office is charge amongst others with the responsibilities including:
+      <ul>      
+  <li> Initiate, formulate, execute, monitor and evaluate policies relating to Land Survey Matters.</li>
+<li> Mapping Matters</li>
+ <li>Photo pointing, benchmarking and trigonometric.</li>
+          </ul>
+</p>
+          </p>
+          <blockquote><p>
+          
+
+
+
+
+
+
+<p>Survey of Government development schemes in conjunction with the New Towns Development Authority and Ministry of Physical Planning and Urban Development for the purpose of:
+  <ul>
+    <li>Provision of infrastructure in Government Estates;</li>
+    <li>Promotion of large scale physical development;</li>
+    <span id="dots">...</span><span id="more"> 
+    <li>Site selection for other Government Ministries/Agencies and Private development;</li>
+    <li>Development control: - monitoring of unauthorized development within Government Estates in liaison with Ministry of Housing, Lands and Urban Development</li>
+   
+    <li>Provision of ground controls (horizontal and vertical) at various orders including primary, secondary, tertiary and others.</li>
+    <li>Land information, storage/ retrieval of survey records of all states and private parcels of land.</li>
+
+    
+      
+    <li>Charting of Survey Plans for Mortgages Assignment Lease, Sublease and Power of Attorney.</li>
+    <li>Provision of survey plans for all the Agencies..</li>
+    <li>Provision and development of land related information systems;</li>
+    <li>Development of land databank;.</li>
+    <li>Acquisition/ conversion, analysis and classification of land data and Meta data;</li>
+
+    <li>Establishment of a property-based information system which supports land administration, surveying, physical planning and taxation;</li>
+    <li>Digital map production</li>
+    <li>To provide Digital mapping / GIS project:</li>
+    <li>Digital orthophotos and aerial imagery photos for the  State government.</li>
+    <li>Digital maps for the State government  in Scale 1:500 for urban areas and 1:1000 for rural areas</li>
+    <li>A GIS database of imagery, digital maps, bathymetric data, orthophoto maps, geodetic data, transportation data and tourism data</li>
+    <li>A Geodetic 3D control framework of primary and secondary data</li>
+    <li>Active GPS reference stations at strategic locations all over Enugu State;</li>
+    <li>Determination of the Geoid;</li>
+    <li>Provision of navigation system throughout Enugu State;</li>
+    <li>Environmental monitoring and control system.</li>
+    <li>Utility mapping, land registration and land management.</li>
+    <li>A web-based GIS enterprise for Enugu State.</li>
+    <li>Any other duty as may be assigned by the Governor.</li>
+
+
+  </span></p>
+    </ul>
+<button onclick="myFunction()" id="myBtn">Read more</button>
+
+
 
         </div><!-- Col end -->
 
@@ -112,9 +165,22 @@
 
         </div><!-- Col end -->
     </div><!-- Content row end -->
-
+  
   </div><!-- Container end -->
 </section><!-- Main container end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <section id="facts" class="facts-area dark-bg">
@@ -323,6 +389,7 @@
 
   <!-- Template custom -->
   <script src="js/script.js"></script>
+   <script src="js/about.js"></script>
 
   </div><!-- Body inner end -->
   </body>

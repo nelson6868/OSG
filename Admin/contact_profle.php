@@ -1,12 +1,12 @@
                                                 
                                                            <?php
-                                                           include 'config.php';
+                                                      include '../config.php';
 
                                                    // read all row from database table
-                                                   $sql = "SELECT * FROM contact_form";
-                                                   $result = $connection->query($sql);
+                                                   $select = "SELECT * FROM contact_form";
+                                                   $result = $conn->query($select);
                                                    if(!$result){
-                                                       die("Invalid query:". $connection->error);
+                                                       die("Invalid query");
                                                        echo "";
                                                    }
 
@@ -16,11 +16,9 @@
 
                                                    // }
 
-                                                   ?>
+                                                
 
-                                                               <?php
-
-                                                               include '../config.php';
+                                                             
 
                                                                if(isset($_POST['submit'])){
 
@@ -456,26 +454,33 @@
                                                                                            </thead>
                                                                                            <tbody>
                                                                                            <?php
+                if($result->num_rows>0){
+                    while($row = $result->fetch_assoc()){
 
-                                                                                                   while($row = $result->fetch_assoc()){
-                                                                                                  echo "
-                                                                                                                                                              
-                                                                                   <td>$row[id]</td>
-                                                                                   <td>$row[name]</td>
-                                                                                   <td>$row[email]</td>
-                                                                                   <td>$row[subject]</td>
-                                                                                   <td>$row[message]</td>
-                                                                                 
-                                                                                 
-                                                                                   <td>
-                                                                                               <a class='btn btn-primary btn-sm' href='/OSG/edit.php?=$row[id]'>Edit</a>
-                                                                                               <a class='btn btn-danger btn-sm' href='/shope/delete.php?=$row[id]'>Delete</a>
-                                                                                           </td>
-                                                                                                                                       </tr>
-                                                                                                                                       ";
 
-                                                                                                                               }
-                                                                                                                               ?>
+
+                    
+                
+
+                ?>
+
+                <tr>
+                    <td><?php echo $row['id'];?> </td>
+                    <td><?php echo $row['name'];?> </td>
+                    <td><?php echo $row['email'];?> </td>
+                    <td><?php echo $row['message'];?> </td>
+                    <td><?php echo $row['subject'];?> </td>
+                   
+                    <td><a class="btn btn-info"  href="update.php?id=<?php echo $row['id'];?>">
+                    Edit
+                    </a>&nbsp;<a class="btn btn-danger" href="Delete.php?id=<?php echo $row['id']; ?>">
+                    Delete </a></td>
+                    </tr>
+                    <?php }
+                }
+                ?>
+
+                                                                                                 
                                                                                                                                </table>
                                                                                                                            </div>
                                                                                                                            <!-- END DATA TABLE-->

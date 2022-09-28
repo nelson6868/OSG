@@ -14,7 +14,7 @@ $name = mysqli_real_escape_string($conn, $_POST['name']);
 
    if($insert){
 
-  die("Registered successfully! Login");
+  die("Message Sent successfully!Check your Mail in next two working day");
     // header('location:login.php');
  }else{
     die('registeration failed!');
@@ -193,8 +193,13 @@ $name = mysqli_real_escape_string($conn, $_POST['name']);
 
     <div class="gap-40"></div>
 
+
+
+    
+
     <div class="row">
-      <div class="col-md-12">
+    <div class="col-md-12" style="-moz-box-shadow:    3px 3px 5px 6px #ccc; -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+        box-shadow:3px 3px 5px 6px #ccc;">
         <h3 class="column-title">We love to hear Your Opinion</h3>
         <!-- contact form works with formspree.io  -->
         <!-- contact form activation doc: https://docs.themefisher.com/constra/contact-form/ -->
